@@ -35,10 +35,12 @@ import BookShelf from './BookShelf'
           <div className="list-books-title">
             <h1>MyReads</h1>
           </div>
+
+        {shelfType.map((shelfi) => (
+                 <BookShelf books= {books.filter(book => shelfi.title === book.shelf)}/> 
+                   
+                ))}
                 
-                shelfType.map((shelfi) => (
-                   <BookShelf books={() => books.filter(book=> book.shelf === shelfi.title)} />
-                ))
         
                
         </div>
