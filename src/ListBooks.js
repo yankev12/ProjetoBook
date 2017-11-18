@@ -30,6 +30,7 @@ import BookShelf from './BookShelf'
     const match = new RegExp(escapeRegExp(query), 'i')
     const { books } = this.props;
     console.log('Props', this.props)
+    const changeShelf = this.props.changeShelf;
 
      return (
         <div className="list-books">

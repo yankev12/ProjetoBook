@@ -5,14 +5,14 @@ class BookShelf extends Component {
 
 static propTypes = {
     books: PropTypes.array.isRequired,
-    ChangeShelf: PropTypes.func.isRequired  
+    changeShelf: PropTypes.func.isRequired  
   }
 
   
   render(){
 
       let showingBooksCR = this.props.books;
-      const { changeShelf} = changeShelf;
+      const { changeShelf} = this.props.changeShelf;
       
 
     return(
