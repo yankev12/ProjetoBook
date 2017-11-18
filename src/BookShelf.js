@@ -12,13 +12,13 @@ static propTypes = {
   render(){
 
       let showingBooksCR = this.props.books;
-      const changeShelf = changeShelf;
+      const changeShelf = this.props.changeShelf;
       const name = this.props.name;
 
 
     return(
 
-                          <div className="bookshelf">
+                          <div className="bookshelf" key={name}>
                             <h2 className="bookshelf-title">{name}</h2>
                               <div className="bookshelf-books">
                                <ol className='books-grid'>                    
@@ -28,7 +28,7 @@ static propTypes = {
                                         <div className="book-top">
                                           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                             <div className="book-shelf-changer">
-                                            <select onChange={(evento) => changeShelf(book, evento.target.value)}>
+                                            <select onChange={(evento) => changeShelf(book, evento.target.value)} value="none">
                                               <option value="none" disabled>Move to...</option>
                                               <option value="currentlyReading">Currently Reading</option>
                                               <option value="wantToRead">Want to Read</option>

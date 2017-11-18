@@ -16,6 +16,10 @@ import BookShelf from './BookShelf'
     query: ''
   }
 
+  updateQuery = (query) => {
+    this.setState({ query: query.trim() })
+  }
+
    render() {
 
 
@@ -42,6 +46,7 @@ import BookShelf from './BookShelf'
                  <BookShelf books={books.filter(book=> shelfi.title === book.shelf)}
                   changeShelf={changeShelf}
                   name={shelfi.name}
+                  onChange={(event) => this.updateQuery(event.target.value)}
                  /> 
                    
                 ))}
