@@ -12,7 +12,7 @@ static propTypes = {
   render(){
 
       let showingBooksCR = this.props.books;
-      let changeShelf = changeShelf;
+      const changeShelf = changeShelf;
       const name = this.props.name;
 
 
