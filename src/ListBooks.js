@@ -8,7 +8,8 @@ import BookShelf from './BookShelf'
 
 
   static propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired
   }
 
   state = {
@@ -27,6 +28,7 @@ import BookShelf from './BookShelf'
     const { query } = this.state
     const match = new RegExp(escapeRegExp(query), 'i')
     const { books } = this.props;
+    const { changeShelf} = this.props;
     
 
     console.log('Props', this.props)
@@ -37,11 +39,11 @@ import BookShelf from './BookShelf'
           </div>
 
         {shelfType.map((shelfi) => (
-                 <BookShelf books= {books.filter(book => shelfi.title === book.shelf)}/> 
+                 <BookShelf books= {books.filter(book => shelfi.title === book.shelf)}
+                  changeShelf ={ this.changeShelf }
+                 /> 
                    
                 ))}
-                
-        
                
         </div>
       

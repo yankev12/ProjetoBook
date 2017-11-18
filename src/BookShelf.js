@@ -4,12 +4,16 @@ import PropTypes from 'prop-types'
 class BookShelf extends Component {
 
 static propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired  
   }
 
+  
   render(){
 
       let showingBooksCR = this.props.books;
+      const { changeShelf} = this.props;
+      
 
     return(
 
@@ -23,7 +27,7 @@ static propTypes = {
                                         <div className="book-top">
                                           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                             <div className="book-shelf-changer">
-                                            <select>
+                                            <select onChange={(evento) => changeShelf(book, evento.target.value)}>
                                               <option value="none" disabled>Move to...</option>
                                               <option value="currentlyReading">Currently Reading</option>
                                               <option value="wantToRead">Want to Read</option>
