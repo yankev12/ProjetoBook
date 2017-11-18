@@ -12,13 +12,14 @@ static propTypes = {
   render(){
 
       let showingBooksCR = this.props.books;
-      const { changeShelf} = this.props.changeShelf;
-      
+      let changeShelf = changeShelf;
+      const name = this.props.name;
+
 
     return(
 
                           <div className="bookshelf">
-                            <h2 className="bookshelf-title">Titulo</h2>
+                            <h2 className="bookshelf-title">{name}</h2>
                               <div className="bookshelf-books">
                                <ol className='books-grid'>                    
                                   {showingBooksCR.map((book) =>(

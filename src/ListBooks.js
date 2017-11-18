@@ -13,17 +13,16 @@ import BookShelf from './BookShelf'
   }
 
   state = {
-    query: '',
-    changeShelf: this.props
+    query: ''
   }
 
    render() {
 
 
     let shelfType = [
-   {title: 'currentlyReading'}, 
-   {title: 'wantToRead'},
-   {title: 'read'}
+   {title: 'currentlyReading', name: 'Currently Reading'}, 
+   {title: 'wantToRead', name: 'Want To Read'},
+   {title: 'read', name: 'Read'}
 ]      
    
     const { query } = this.state
@@ -31,6 +30,7 @@ import BookShelf from './BookShelf'
     const { books } = this.props;
     console.log('Props', this.props)
     const changeShelf = this.props.changeShelf;
+    const nome ='';
 
      return (
         <div className="list-books">
@@ -41,6 +41,7 @@ import BookShelf from './BookShelf'
         {shelfType.map((shelfi) => (
                  <BookShelf books={books.filter(book=> shelfi.title === book.shelf)}
                   changeShelf={changeShelf}
+                  name={shelfi.name}
                  /> 
                    
                 ))}
