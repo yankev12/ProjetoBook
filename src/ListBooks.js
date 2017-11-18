@@ -13,7 +13,8 @@ import BookShelf from './BookShelf'
   }
 
   state = {
-    query: ''
+    query: '',
+    changeShelf: this.props
   }
 
    render() {
@@ -28,10 +29,8 @@ import BookShelf from './BookShelf'
     const { query } = this.state
     const match = new RegExp(escapeRegExp(query), 'i')
     const { books } = this.props;
-    const { changeShelf} = this.props;
-    
-
     console.log('Props', this.props)
+
      return (
         <div className="list-books">
           <div className="list-books-title">
@@ -39,8 +38,8 @@ import BookShelf from './BookShelf'
           </div>
 
         {shelfType.map((shelfi) => (
-                 <BookShelf books= {books.filter(book => shelfi.title === book.shelf)}
-                  changeShelf ={ this.changeShelf }
+                 <BookShelf books={books.filter(book=> shelfi.title === book.shelf)}
+                  changeShelf={changeShelf}
                  /> 
                    
                 ))}
