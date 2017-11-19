@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import sortBy from 'sort-by';
-import escapeRegExp from 'escape-string-regexp'
 import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 
@@ -12,14 +10,6 @@ import BookShelf from './BookShelf'
     changeShelf: PropTypes.func.isRequired
   }
 
-  state = {
-    query: ''
-  }
-
-  updateQuery = (query) => {
-    this.setState({ query: query.trim() })
-  }
-
    render() {
 
 
@@ -29,12 +19,9 @@ import BookShelf from './BookShelf'
    {title: 'read', name: 'Read'}
 ]      
    
-    const { query } = this.state
-    const match = new RegExp(escapeRegExp(query), 'i')
     const { books } = this.props;
-    console.log('Props', this.props)
     const changeShelf = this.props.changeShelf;
-    const nome ='';
+    console.log('Props', this.props)
 
      return (
         <div className="list-books">
@@ -43,14 +30,13 @@ import BookShelf from './BookShelf'
           </div>
 
         {shelfType.map((shelfi) => (
+
                  <BookShelf books={books.filter(book=> shelfi.title === book.shelf)}
                   changeShelf={changeShelf}
                   name={shelfi.name}
-                  onChange={(event) => this.updateQuery(event.target.value)}
-                 /> 
-                   
-                ))}
-               
+    
+                 />  
+                ))}          
         </div>
       
      )
