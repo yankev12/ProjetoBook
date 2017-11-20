@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
+import { Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
  class ListBooks extends Component {
 
@@ -28,15 +30,17 @@ import BookShelf from './BookShelf'
           <div className="list-books-title">
             <h1>MyReads</h1>
           </div>
+          
+            {shelfType.map((shelfi) => (
 
-        {shelfType.map((shelfi) => (
-
-                 <BookShelf books={books.filter(book=> shelfi.title === book.shelf)}
-                  changeShelf={changeShelf}
-                  name={shelfi.name}
-    
-                 />  
-                ))}          
+           <BookShelf books={books.filter(book=> shelfi.title === book.shelf)}
+            changeShelf={changeShelf}
+            name={shelfi.name}
+           />
+          ))} 
+          <div className="open-search">
+              <Link to="/store">Search</Link>
+            </div>         
         </div>
       
      )

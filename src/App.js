@@ -2,6 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
+import StoreBooks from './StoreBooks'
 import './App.css'
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by';
@@ -37,20 +38,18 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    <Route exact path='/' render={() => (
+    
+
+      return (
+        <div>
+       <Route exact path='/' render={() => (
           <ListBooks
             books={this.state.books}
             changeShelf ={this.changeShelf}
           />
         )}/>
-
-      return (
-        <div>
-         <ListBooks 
-          books={this.state.books}
-          changeShelf={this.changeShelf}
-         />
-        </div>
+    <Route path='/store' component={StoreBooks}/>
+    </div>
     )
   }
 }
