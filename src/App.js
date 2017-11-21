@@ -48,8 +48,13 @@ class BooksApp extends React.Component {
             changeShelf ={this.changeShelf}
           />
         )}/>
-    <Route path='/store' component={StoreBooks}/>
-    </div>
+      <Route path='/store' render={({ history }) => (
+          <StoreBooks
+            books = {this.state.books}
+            changeShelf ={this.changeShelf}
+            />
+      )}/>
+      </div>
     )
   }
 }
