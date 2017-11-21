@@ -15,43 +15,32 @@ class StoreBooks extends Component {
   }
 
 	state = {
-    query: ''
+    query: '',
+    updatedBooks: ''
   }
+
 
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
+    if(query === ''){
+    }else{
+      BooksAPI.search(query, 20).then((books) => {      
+      this.setState({ updatedBooks :  books }) 
+      })
+    }         
+    
   }
 
-
   render() {
-
-     let shelfType = [
-   {title: 'currentlyReading', name: 'Currently Reading'}, 
-   {title: 'wantToRead', name: 'Want To Read'},
-   {title: 'read', name: 'Read'}
-]      
-   
     
     
-
+    
   	const { query } = this.state
-    const { books } = this.props;
+    const updatedBooks = this.state
+    const books  = this.props
     const changeShelf = this.props.changeShelf;
-    console.log('Props', this.props)
-    const maxValue = 20
-    const teste = 'Art'
-    var updatedBooks;
-
-   
-      
-     
-        BooksAPI.search(teste, 20).then((books) => {      
-      this.setState({ updatedBooks: books })      
-    })
-     
-      
-  
-     
+    console.log('State', this.state)
+    
     return (
     	<div className = 'search-books'>
 	    	<div className='search-books-bar'>
@@ -68,13 +57,14 @@ class StoreBooks extends Component {
     		</div>
     		<div>
             
-            {shelfType.map((shelfi) => (
-
-           <BookShelf books={this.state.updatedBooks}
+            {this.state.updatedBooks.length >= 1 &&(
+           <BookShelf books={ this.state.updatedBooks }
             changeShelf={changeShelf}
-            name={shelfi.name}
            />
-          ))} 
+          )} 
+            
+
+            
     		</div>
     	</div>
       
