@@ -36,20 +36,20 @@ class StoreBooks extends Component {
 
   	const { query } = this.state
     const { books } = this.props;
-    const changeBook = this.props.changeShelf;
-    let searchBooks
     const changeShelf = this.props.changeShelf;
     console.log('Props', this.props)
     const maxValue = 20
-    const teste = 'Android'
-    var updatedBooks
+    const teste = 'Art'
+    var updatedBooks;
 
    
       
      
-      BooksAPI.search(teste, maxValue).then((books) => {      
+        BooksAPI.search(teste, 20).then((books) => {      
       this.setState({ updatedBooks: books })      
     })
+     
+      
   
      
     return (
@@ -70,7 +70,7 @@ class StoreBooks extends Component {
             
             {shelfType.map((shelfi) => (
 
-           <BookShelf books={updatedBooks}
+           <BookShelf books={this.state.updatedBooks}
             changeShelf={changeShelf}
             name={shelfi.name}
            />
