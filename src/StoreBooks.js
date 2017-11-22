@@ -36,7 +36,6 @@ class StoreBooks extends Component {
   render() {
     
     
-    
   	const { query }=this.state
     const updatedBooks=this.state
     const books =this.props
@@ -64,8 +63,6 @@ class StoreBooks extends Component {
             changeShelf={changeShelf}
            />
           )} 
-            
-
             
     		</div>
     	</div>
