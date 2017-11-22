@@ -4,13 +4,10 @@ import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
 import StoreBooks from './StoreBooks'
 import './App.css'
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by';
-
 
 
 class BooksApp extends React.Component {
-  state = {
+  state= {
     books: [],
     /**
      * TODO: Instead of using this state variable to keep track of which page
@@ -22,15 +19,15 @@ class BooksApp extends React.Component {
   }
   
   componentDidMount() {
-    BooksAPI.getAll().then((books) => {
+    BooksAPI.getAll().then((books)=> {
       this.setState({ books })
     })
   }
 
-  changeShelf = ( changeBook, changeShelf ) => {
+  changeShelf=( changeBook, changeShelf )=> {
     BooksAPI.update(changeBook, changeShelf).then(book =>{
-      changeBook.shelf = changeShelf
-      var updatedBooks = this.state.books.filter( book => book.id !== changeBook.id )
+      changeBook.shelf=changeShelf
+      var updatedBooks=this.state.books.filter( book => book.id !== changeBook.id )
       updatedBooks.push(changeBook);
       this.setState({ books: updatedBooks })
       
@@ -42,16 +39,16 @@ class BooksApp extends React.Component {
 
       return (
         <div>
-       <Route exact path='/' render={() => (
+       <Route exact path='/' render={()=> (
           <ListBooks
             books={this.state.books}
             changeShelf ={this.changeShelf}
           />
         )}/>
-      <Route path='/store' render={({ history }) => (
+      <Route path='/store' render={({ history })=> (
           <StoreBooks
-            books = {this.state.books}
-            changeShelf ={this.changeShelf}
+            books={this.state.books}
+            changeShelf={this.changeShelf}
             />
       )}/>
       </div>

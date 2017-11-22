@@ -22,29 +22,31 @@ class StoreBooks extends Component {
 
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
+    const match = new RegExp(escapeRegExp(query), 'i')
+    
     if(query === ''){
     }else{
-      BooksAPI.search(query, 20).then((books) => {      
-      this.setState({ updatedBooks :  books }) 
+      BooksAPI.search(query, 20).then((books) => {
+      books = books.filter((book) => match.test(book.title))      
+      this.setState({ updatedBooks :  books })
       })
     }         
-    
   }
 
   render() {
     
     
     
-  	const { query } = this.state
-    const updatedBooks = this.state
-    const books  = this.props
-    const changeShelf = this.props.changeShelf;
+  	const { query }=this.state
+    const updatedBooks=this.state
+    const books =this.props
+    const changeShelf=this.props.changeShelf;
     console.log('State', this.state)
     
     return (
-    	<div className = 'search-books'>
+    	<div className='search-books'>
 	    	<div className='search-books-bar'>
-	    	<Link className="close-search"  to="/">Close</Link>
+	    	<Link className="close-search"  to = "/">Close</Link>
 	    		<div>
 		    		<input
 		    			className=''

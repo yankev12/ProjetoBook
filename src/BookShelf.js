@@ -18,10 +18,10 @@ static propTypes = {
 
     return(
 
-                          <div className="bookshelf" key={name}>
-                            <h2 className="bookshelf-title">{name}</h2>
-                              <div className="bookshelf-books">
-                               <ol className='books-grid'>                    
+                          <div className = "bookshelf" key={changeShelf.name}>
+                            <h2 className = "bookshelf-title">{name}</h2>
+                              <div className = "bookshelf-books">
+                               <ol className ='books-grid'>                    
                                   {showingBooksCR.map((book) =>(
                                     <li key={book.id}>
                                       <div className="book">
