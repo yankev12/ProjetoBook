@@ -6,9 +6,10 @@ import { Route } from 'react-router-dom'
 
 export const BookShelf = props => {
 
-
-  
-  
+BookShelf.propTypes ={
+books: React.PropTypes.array.isRequired,
+changeShelf: React.PropTypes.func.isRequired,
+}  
 
       let showingBooksCR = props.books;
       const changeShelf = props.changeShelf;
@@ -17,7 +18,7 @@ export const BookShelf = props => {
 
     return(
 
-                          <div className = "bookshelf" key={changeShelf.name}>
+                          <div className = "bookshelf">
                             <h2 className = "bookshelf-title">{name}</h2>
                               <div className = "bookshelf-books">
                                <ol className ='books-grid'>                    
@@ -44,12 +45,7 @@ export const BookShelf = props => {
                                        ))}
                                </ol>
                                </div>
-                               </div>
-                               
-                              
-                          
-
-                              
+                               </div>                                                 
       )
   
 }

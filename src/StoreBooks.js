@@ -23,12 +23,12 @@ class StoreBooks extends Component {
 
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
-    const match = new RegExp(escapeRegExp(query), 'i')
     
     if(query === ''){
     }else{
+      const match = new RegExp(escapeRegExp(query), 'i')
       BooksAPI.search(query, 20).then((books) => {
-      books = books.filter((book) => match.test(book.title))      
+      books = books.filter((book) => match.test(book.title));    
       this.setState({ updatedBooks :  books })
       })
     }         
