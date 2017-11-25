@@ -5,10 +5,12 @@ import ListBooks from './ListBooks'
 import StoreBooks from './StoreBooks'
 import './App.css'
 import { Link } from 'react-router-dom'
-import {withRouter} from "react-router-dom";
+
 
 
 class BooksApp extends React.Component {
+
+
   state= {
     books: [],
    
@@ -32,10 +34,11 @@ class BooksApp extends React.Component {
     BooksAPI.update(changeBook, changeShelf).then(book =>{
       changeBook.shelf=changeShelf
       this.setState({ books: this.state.books.filter( book => book.id !== changeBook.id ).concat([ changeBook ]) })
-     
     })
  
   }
+
+
 
   render() {
     
