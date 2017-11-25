@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import BookShelf from './BookShelf'
+import { Debounce } from 'react-throttle'
 
 class StoreBooks extends Component {
 
@@ -47,13 +48,13 @@ class StoreBooks extends Component {
 	    	<div className='search-books-bar'>
 	    	<Link className="close-search"  to = "/">Close</Link>
 	    		<div>
+          <Debounce time="100" handler="onChange">
 		    		<input
-		    			className=''
 		    			type='text'
 		    			placeholder='Search books'
-		    			value={query}
 		    			onChange={(event) => this.updateQuery(event.target.value)}
 		    		/>
+            </Debounce>
 		    	</div>
     		</div>
     		<div>

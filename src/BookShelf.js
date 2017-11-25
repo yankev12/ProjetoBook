@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
-class BookShelf extends Component {
 
-static propTypes = {
-    books: PropTypes.array.isRequired,
-    changeShelf: PropTypes.func.isRequired  
-  }
+export const BookShelf = props => {
+
 
   
-  render(){
+  
 
-      let showingBooksCR = this.props.books;
-      const changeShelf = this.props.changeShelf;
-      const name = this.props.name;
+      let showingBooksCR = props.books;
+      const changeShelf = props.changeShelf;
+      const name = props.name;
 
 
     return(
@@ -52,7 +51,7 @@ static propTypes = {
 
                               
       )
-  }
+  
 }
 export default BookShelf
 

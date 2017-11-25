@@ -4,11 +4,14 @@ import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
 import StoreBooks from './StoreBooks'
 import './App.css'
+import { Link } from 'react-router-dom'
+import {withRouter} from "react-router-dom";
 
 
 class BooksApp extends React.Component {
   state= {
     books: [],
+   
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -24,14 +27,14 @@ class BooksApp extends React.Component {
     })
   }
 
+
   changeShelf=( changeBook, changeShelf )=> {
     BooksAPI.update(changeBook, changeShelf).then(book =>{
       changeBook.shelf=changeShelf
-      var updatedBooks=this.state.books.filter( book => book.id !== changeBook.id )
-      updatedBooks.push(changeBook);
-      this.setState({ books: updatedBooks })
-      
+      this.setState({ books: this.state.books.filter( book => book.id !== changeBook.id ).concat([ changeBook ]) })
+     
     })
+ 
   }
 
   render() {
@@ -45,7 +48,7 @@ class BooksApp extends React.Component {
             changeShelf ={this.changeShelf}
           />
         )}/>
-      <Route path='/store' render={({ history })=> (
+      <Route path='/search' render={({ history })=> (
           <StoreBooks
             books={this.state.books}
             changeShelf={this.changeShelf}
