@@ -28,21 +28,17 @@ class StoreBooks extends Component {
 
     const teste = this.state
     const bookcases = this.state
+    const updatedBooks = this.state
     this.setState({bookcases : this.props.books})
 
     if(query !== '' && this.state.bookcases !== ''){
 
           BooksAPI.search(query, 20).then((newBooks) => {
           console.log('State', this.state);
-          newBooks.map((newBook)=>(
-                  this.setState({bookcases: this.state.bookcases.find(bookcase => bookcase.title === newBook.title).concat([ newBooks ])})
+              this.props.newBooks.map((newBook)=>(
+                    this.setState({bookcases: this.state.bookcases.find(bookcase => bookcase.title === newBook.title).concat([this.state.bookcases])})
 
-          ))
-     
-          newBooks = this.state.bookcases
-          
-
-          this.setState({ updatedBooks :  this.state.bookcases })
+              ))   
           
           })
            
@@ -55,6 +51,7 @@ class StoreBooks extends Component {
     
   	const { query }=this.state
     const updatedBooks=this.state
+    const bookcases = this.state
     const books =this.props
     const changeShelf=this.props.changeShelf;
 
