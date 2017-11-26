@@ -23,15 +23,31 @@ class StoreBooks extends Component {
 
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
-    
-    if(query === ''){
-    }else{
-      const match = new RegExp(escapeRegExp(query), 'i')
-      BooksAPI.search(query, 20).then((books) => {
-      books = books.filter((book) => match.test(book.title));    
-      this.setState({ updatedBooks :  books })
-      })
-    }         
+
+    const match = new RegExp(escapeRegExp(query), 'i')
+
+    const teste = this.state
+    const bookcases = this.state
+    this.setState({bookcases : this.props.books})
+
+    if(query !== '' && this.state.bookcases !== ''){
+
+          BooksAPI.search(query, 20).then((newBooks) => {
+          console.log('State', this.state);
+          newBooks.map((newBook)=>(
+                  this.setState({bookcases: this.state.bookcases.find(bookcase => bookcase.title === newBook.title).concat([ newBooks ])})
+
+          ))
+     
+          newBooks = this.state.bookcases
+          
+
+          this.setState({ updatedBooks :  this.state.bookcases })
+          
+          })
+           
+    }
+
   }
 
   render() {
@@ -41,7 +57,7 @@ class StoreBooks extends Component {
     const updatedBooks=this.state
     const books =this.props
     const changeShelf=this.props.changeShelf;
-    console.log('State', this.state)
+
     
     return (
     	<div className='search-books'>
