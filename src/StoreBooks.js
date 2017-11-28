@@ -40,10 +40,10 @@ class StoreBooks extends Component {
           })
               
 
-          if(this.state.bookcases.find(bookcase => bookcase.shelf !== 'none')){
+          if(this.state.bookcases === ''){
             this.state.updatedBooks.map((updatedBook) => {
                 if(this.state.bookcases.find(bookcase => bookcase.title === updatedBook.title)){
-                  updatedBook.shelf = 'read'
+                  this.state.updatedBooks.concat([this.state.bookcases.find(bookcase => bookcase.title === updatedBook.title)])
                 }
             })
              
