@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
-import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import BookShelf from './BookShelf'
@@ -29,43 +27,50 @@ class StoreBooks extends Component {
     const teste = this.state
     const bookcases = this.state
     const updatedBooks = this.state
-    this.setState({bookcases : this.props.books.filter((book) => match.test(book.title))})
+    this.setState({bookcases : this.props.books})
+    if(this.state.bookcases.filter((book) => match.test(book.title))){
+      this.setState({bookcases: this.state.bookcases.filter((book) => match.test(book.title))})
+    }
+    
 
-    if(query !== '' && this.state.bookcases !== ''){
+    if(query){
 
           BooksAPI.search(query, 20).then((newBooks) => {
-          newBooks = newBooks.filter((newBook) => match.test(newBook.title))
-          this.setState({updatedBooks : newBooks})
-          
-          })
-              
-
-          if(this.state.bookcases === ''){
-            this.state.updatedBooks.map((updatedBook) => {
-                if(this.state.bookcases.find(bookcase => bookcase.title === updatedBook.title)){
-                  this.state.updatedBooks.concat([this.state.bookcases.find(bookcase => bookcase.title === updatedBook.title)])
-                }
-            })
-             
+          if(newBooks.length >= 1){
+            newBooks = newBooks.filter((newBook) => match.test(newBook.title))           
           }
+          this.setState({updatedBooks : newBooks}) 
+
+          if(this.state.updatedBooks){
+          this.state.updatedBooks.map((updatedBook) =>{
+            this.setState({teste: ''});
+            this.setState({teste: this.state.bookcases.find(bookcase => bookcase.id === updatedBook.id)});
+                if(this.state.teste && this.state.teste !== ''){
+                  updatedBook.shelf = this.state.teste.shelf;
+                }else{
+                    updatedBook.shelf = 'none';
+                     this.state.bookcases.concat([this.state.updatedBooks])
+                }
+                this.setState({updatedBooks: this.state.updatedBooks})
+            
+            this.setState({teste: ''});
+          })
+          }
+          })
+          
     }
 
   }
 
   render() {
     
-    console.log('State', this.state); 
-  	const { query }=this.state
-    const updatedBooks=this.state
-    const bookcases = this.state
-    const books =this.props
     const changeShelf=this.props.changeShelf;
 
     
     return (
     	<div className='search-books'>
 	    	<div className='search-books-bar'>
-	    	<Link className="close-search"  to = "/">Close</Link>
+	    	<Link className="close-search"  to="/">Close</Link>
 	    		<div>
           <Debounce time="100" handler="onChange">
 		    		<input

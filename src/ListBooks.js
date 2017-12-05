@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import BookShelf from './BookShelf'
 import { Link } from 'react-router-dom'
 
@@ -10,11 +9,12 @@ books: React.PropTypes.array.isRequired,
 changeShelf: React.PropTypes.func.isRequired,
 }  
 
-    let shelfType = [
+let shelfType = [
    {title: 'currentlyReading', name: 'Currently Reading'}, 
    {title: 'wantToRead', name: 'Want To Read'},
    {title: 'read', name: 'Read'}
-]        
+]
+        
     const { books } = props;
     const changeShelf = props.changeShelf;
 
